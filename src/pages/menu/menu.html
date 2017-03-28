@@ -1,0 +1,39 @@
+<ion-grid>
+  <ion-row>
+    <ion-col align-self-center text-center>
+        <div class="menu-container">
+            <div *ngIf="status == 'login'">
+                <div>
+                    <input type="text" placeholder="Enter your username" #username [value]="login_username" (change)="login_username = username.value">
+                </div>
+                <div>
+                    <input type="password" placeholder="Enter your password" #password [value]="login_password" (change)="login_password = password.value">
+                </div>
+                <div>
+                    <input type="submit" value="Login to account" (click)="doLogin()">
+                </div>
+                <div>
+                    <a href="#" (click)="status = 'register'">Create an account</a>
+                </div>
+            </div>
+            <div *ngIf="status == 'register'">
+                <div>
+                    <input type="text" placeholder="Enter your username">
+                </div>
+                <div>
+                    <input type="password" placeholder="Enter your password">
+                </div>
+                <div>
+                    <input type="password" placeholder="Re-enter your password">
+                </div>
+                <div>
+                    <input type="submit" value="Register new account">
+                </div>
+                <div>
+                    <a href="#" (click)="status = 'login'">Return to Login</a>
+                </div>
+            </div>
+        </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
