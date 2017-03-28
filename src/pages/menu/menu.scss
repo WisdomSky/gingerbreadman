@@ -2,19 +2,19 @@
 @keyframes background-pan {
   0% {
     background-position: 50% center;
-    background-size: auto 100%;
+    /*background-size: auto 100%;*/
   }
   25% {
     background-position: 25% center;
-    background-size: auto 125%;
+    /*background-size: auto 125%;*/
   }
   75% {
     background-position: 80% center;
-    background-size: auto 115%;
+    /*background-size: auto 115%;*/
   }
   100% {
     background-position: 50% center;
-    background-size: auto 100%;
+    /*background-size: auto 100%;*/
   }
 }
 
@@ -44,24 +44,11 @@ page-menu {
     background: transparentize(#ccc, 0.5);
     border-radius: 10px;
 
-    [type=password] {
-      margin-top: 10px;
-    }
-
-    [type=text] {
-      margin-top: 35px;
-    }
-
-    [type=submit] {
-      margin-top: 25px;
-    }
-
     a {
       display: inline-block;
       color: #fff;
       font-size: 16px;
       font-weight: lighter;
-      margin-top: 20px;
       text-decoration: none;
     }
 

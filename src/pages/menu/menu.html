@@ -4,33 +4,52 @@
         <div class="menu-container">
             <div *ngIf="status == 'login'">
                 <div>
-                    <input type="text" placeholder="Enter your username" #username [value]="login_username" (change)="login_username = username.value">
+                    <input type="text" placeholder="Enter your username" margin-top #username [value]="login_username" (change)="login_username = username.value">
                 </div>
                 <div>
-                    <input type="password" placeholder="Enter your password" #password [value]="login_password" (change)="login_password = password.value">
+                    <input type="password" placeholder="Enter your password" margin-top  #password [value]="login_password" (change)="login_password = password.value">
                 </div>
                 <div>
-                    <input type="submit" value="Login to account" (click)="doLogin()">
+                    <input type="submit" value="Login to account" margin-top  (click)="doLogin()">
                 </div>
                 <div>
-                    <a href="#" (click)="status = 'register'">Create an account</a>
+                    <a href="#" (click)="status = 'register'" margin-top >Create an account</a>
                 </div>
             </div>
             <div *ngIf="status == 'register'">
                 <div>
-                    <input type="text" placeholder="Enter your username">
+                    <input type="text" placeholder="Enter your username" margin-top >
                 </div>
                 <div>
-                    <input type="password" placeholder="Enter your password">
+                    <input type="password" placeholder="Enter your password" margin-top >
                 </div>
                 <div>
-                    <input type="password" placeholder="Re-enter your password">
+                    <input type="password" placeholder="Re-enter your password" margin-top >
                 </div>
                 <div>
-                    <input type="submit" value="Register new account">
+                    <input type="submit" value="Register new account" margin-top >
                 </div>
                 <div>
-                    <a href="#" (click)="status = 'login'">Return to Login</a>
+                    <a href="#" (click)="status = 'login'" margin-top >Return to Login</a>
+                </div>
+            </div>
+            <div *ngIf="status == 'menu'">
+                <div>
+                    <input type="button" [attr.value]="user_has_saved_story ? 'Select a new story' : 'Select a story'" margin-top (click)="status = 'story'">
+                </div>
+                <div *ngIf="user_has_saved_story">
+                    <input type="button" value="Load saved story" margin-top>
+                </div>
+                <div>
+                    <a href="#" (click)="status = 'login'" margin-top >Logout</a>
+                </div>
+            </div>
+            <div *ngIf="status == 'story'">
+                <div *ngFor="let story of stories_titles">
+                    <input type="button" [attr.value]="story" margin-top>
+                </div>
+                <div>
+                    <a href="#" (click)="status = 'menu'" margin-top >Return</a>
                 </div>
             </div>
         </div>
