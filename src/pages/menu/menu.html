@@ -2,54 +2,88 @@
   <ion-row>
     <ion-col align-self-center text-center>
         <div class="menu-container">
-            <div *ngIf="status == 'login'">
+            <div *ngIf="status == 'main'">
                 <div>
-                    <input type="text" placeholder="Enter your username" margin-top #username [value]="login_username" (change)="login_username = username.value">
+                    <h3>Welcome</h3>
                 </div>
                 <div>
-                    <input type="password" placeholder="Enter your password" margin-top  #password [value]="login_password" (change)="login_password = password.value">
+                    <input type="button" value="Add new user" margin-top  (click)="status = 'new_user'">
                 </div>
                 <div>
-                    <input type="submit" value="Login to account" margin-top  (click)="doLogin()">
-                </div>
-                <div>
-                    <a href="#" (click)="status = 'register'" margin-top >Create an account</a>
+                    <input type="button" value="Select existing user" margin-top  (click)="status = 'users_list'" *ngIf="users_list.length">
                 </div>
             </div>
-            <div *ngIf="status == 'register'">
+            <div *ngIf="status == 'new_user'">
                 <div>
-                    <input type="text" placeholder="Enter your username" margin-top >
+                    <h3>Add New User</h3>
+                </div>
+                <div style="color: #f30d0d;">
+                    <span>{{ new_user_error }}</span>
                 </div>
                 <div>
-                    <input type="password" placeholder="Enter your password" margin-top >
+                    <input type="text" placeholder="Enter your name" margin-top [attr.value]="new_user_name" #new_user_name_input (change)="new_user_name = new_user_name_input.value">
                 </div>
                 <div>
-                    <input type="password" placeholder="Re-enter your password" margin-top >
+                    <input type="submit" value="Create" margin-top (click)="addNewUser()">
                 </div>
                 <div>
-                    <input type="submit" value="Register new account" margin-top >
-                </div>
-                <div>
-                    <a href="#" (click)="status = 'login'" margin-top >Return to Login</a>
+                    <input type="submit" value="Return to menu" class="gutter gutter-bottom" margin-top (click)="status= 'main'; new_user_error = ''">
                 </div>
             </div>
-            <div *ngIf="status == 'menu'">
+            <div *ngIf="status == 'users_list'">
                 <div>
-                    <input type="button" [attr.value]="user_has_saved_story ? 'Select a new story' : 'Select a story'" margin-top (click)="status = 'story'">
+                    <h3>Users List</h3>
                 </div>
-                <div *ngIf="user_has_saved_story">
-                    <input type="button" value="Load saved story" margin-top>
+                <div style="max-height: 300px; overflow: hidden; overflow-y: auto">
+                    <div *ngFor="let user of users_list">
+                        <input type="button" [attr.value]="user" margin-top (click)="loginUser(user)" >
+                    </div>
+                </div>
+                <div *ngIf="users_list.length">
+                    <input type="submit" value="Delete a user" class="gutter" margin-top (click)="status= 'delete_user'">
                 </div>
                 <div>
-                    <a href="#" (click)="status = 'login'" margin-top >Logout</a>
+                    <input type="submit" value="Return to menu" class="gutter-bottom" margin-top (click)="status= 'main'">
                 </div>
             </div>
-            <div *ngIf="status == 'story'">
+            <div *ngIf="status == 'delete_user'">
+                <div>
+                    <h3>Delete a User</h3>
+                </div>
+                <div style="max-height: 300px; overflow: hidden; overflow-y: auto">
+                    <div *ngFor="let user of users_list">
+                        <input type="button" [attr.value]="user" margin-top (click)="confirmRemoveUser(user)">
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" value="Return to list" class="gutter gutter-bottom" margin-top (click)="status= 'users_list'">
+                </div>
+            </div>
+            <div *ngIf="status == 'delete_user_confirm'">
+                <div>
+                    <h3>Delete user '{{ delete_user_name }}'</h3>
+                </div>
+                <div>
+                    <p style="color: #f30d0d" padding>
+                        This will also delete all the saved data of this user.
+                    </p>
+                </div>
+                <div>
+                    <input type="submit" value="Delete" class="gutter" margin-top (click)="removeUser()">
+                </div>
+                <div>
+                    <input type="submit" value="Return" class="gutter gutter-bottom" margin-top (click)="status= 'delete_user'">
+                </div>
+            </div>
+            <div *ngIf="status == 'stories_list'">
+                <div>
+                    <h3>Select a Story</h3>
+                </div>
                 <div *ngFor="let story of stories_titles">
-                    <input type="button" [attr.value]="story" margin-top>
+                    <input type="button" [attr.value]="story" margin-top >
                 </div>
                 <div>
-                    <a href="#" (click)="status = 'menu'" margin-top >Return</a>
+                    <input type="submit" value="Return to menu" class="gutter gutter-bottom" margin-top (click)="status= 'main'">
                 </div>
             </div>
         </div>
