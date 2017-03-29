@@ -7,10 +7,10 @@
                     <h3>Welcome</h3>
                 </div>
                 <div>
-                    <input type="button" value="Add new user" margin-top  (click)="status = 'new_user'">
+                    <input type="button" value="Select existing user" margin-top  (click)="status = 'users_list'" *ngIf="users_list.length">
                 </div>
                 <div>
-                    <input type="button" value="Select existing user" margin-top  (click)="status = 'users_list'" *ngIf="users_list.length">
+                    <input type="button" value="Add new user" margin-top  (click)="status = 'new_user'">
                 </div>
             </div>
             <div *ngIf="status == 'new_user'">
