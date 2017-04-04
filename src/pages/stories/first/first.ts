@@ -1,5 +1,7 @@
 import {Component} from "@angular/core";
-import {NavController} from "ionic-angular";
+import {NavController, PopoverController} from "ionic-angular";
+import {MusicPage} from "./../../music/music";
+import {MusicService} from "../../../services/music.service";
 
 @Component({
   selector: 'story-first',
@@ -7,9 +9,22 @@ import {NavController} from "ionic-angular";
 })
 export class FirstStory {
 
-  constructor(public navCtrl: NavController) {
+  private musicService;
+
+  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, musicService: MusicService) {
+    this.musicService = musicService;
+    musicService.changeMusic('forest.mp3');
+  }
+
+
+  goToMenu() {
+    this.navCtrl.popToRoot();
 
   }
 
+  musicSetting() {
+    let popover = this.popoverCtrl.create(MusicPage);
+    popover.present();
+  }
 
 }

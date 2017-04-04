@@ -1,4 +1,4 @@
-<ion-grid>
+<ion-grid style="background: #000 url('assets/menu.png') no-repeat center center;">
   <ion-row>
     <ion-col align-self-center text-center>
         <div class="menu-container">
@@ -7,7 +7,7 @@
                     <h3>Welcome</h3>
                 </div>
                 <div>
-                    <input type="button" value="Select existing user" margin-top  (click)="status = 'users_list'" *ngIf="users_list.length">
+                    <input type="button" value="Select user" margin-top  (click)="status = 'users_list'" *ngIf="users_list.length">
                 </div>
                 <div>
                     <input type="button" value="Add new user" margin-top  (click)="status = 'new_user'">
@@ -80,7 +80,9 @@
                     <h3>Select a Story</h3>
                 </div>
                 <div *ngFor="let story of stories_titles">
-                    <input type="button" [attr.value]="story" margin-top >
+                    <button class="story" margin-top (click)="selectStory(story)">
+                        {{ story }}
+                    </button>
                 </div>
                 <div>
                     <input type="submit" value="Return to menu" class="gutter gutter-bottom" margin-top (click)="status= 'main'">

@@ -1,0 +1,8 @@
+<ion-list no-lines>
+    <ion-list-header>Music Settings</ion-list-header>
+    <ion-item>
+        <ion-label>Play BG music</ion-label>
+        <ion-checkbox color="dark" checked="true" [checked]="play_music" (ionChange)="updateSettings($event)"></ion-checkbox>
+    </ion-item>
+    <button ion-item *ngFor="let music of music_titles" [disabled]="!play_music" (click)="changeMusic(music)">{{ music }}</button>
+</ion-list>

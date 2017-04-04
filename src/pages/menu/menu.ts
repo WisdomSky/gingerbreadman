@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import stories from './../stories/index';
 import { NavController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import {MusicService} from "../../services/music.service";
 
 @Component({
   selector: 'page-menu',
@@ -20,8 +21,10 @@ export class MenuPage {
   private users_list          = [];
   private local               = new Storage();
   private delete_user_name    = '';
+  private musicService;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, musicService: MusicService) {
+    this.musicService = musicService;
     this.stories_list   = stories;
     this.stories_titles = Object.keys(this.stories_list);
 
@@ -31,6 +34,10 @@ export class MenuPage {
       }
     });
 
+  }
+
+  ionViewDidEnter() {
+    this.musicService.changeMusic('menu.mp3');
   }
 
   addNewUser() {
@@ -77,6 +84,11 @@ export class MenuPage {
   loginUser(name) {
     this.login_name = name;
     this.status = 'stories_list';
+  }
+
+
+  selectStory(story) {
+    this.navCtrl.push(this.stories_list[story]);
   }
 
 

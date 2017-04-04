@@ -3,6 +3,6 @@ import { SecondStory } from './second/second';
 
 
 export default {
-    'First Story' : FirstStory,
-    'Second Story' : SecondStory,
+    'The Adventure of Little Gingerbread Man and the Butterfly' : FirstStory,
+    'The Awakening of Consciousness' : SecondStory,
 }
