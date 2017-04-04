@@ -83,7 +83,7 @@ export class MenuPage {
 
   loginUser(name) {
     this.login_name = name;
-    this.status = 'stories_list';
+    this.status = 'story_select';
   }
 
 

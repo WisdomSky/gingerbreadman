@@ -88,6 +88,20 @@
                     <input type="submit" value="Return to menu" class="gutter gutter-bottom" margin-top (click)="status= 'main'">
                 </div>
             </div>
+            <div *ngIf="status == 'story_select'">
+                <div>
+                    <h3>Select </h3>
+                </div>
+                <div>
+                    <input type="submit" value="Load saved story" margin-top>
+                </div>
+                <div>
+                    <input type="submit" value="Select a new story" margin-top (click)="status= 'stories_list'">
+                </div>
+                <div>
+                    <input type="submit" value="Return to menu" class="gutter gutter-bottom" margin-top (click)="status= 'main'">
+                </div>
+            </div>
         </div>
     </ion-col>
   </ion-row>
