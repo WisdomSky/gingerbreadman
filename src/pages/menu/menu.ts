@@ -3,6 +3,7 @@ import stories from './../stories/index';
 import { NavController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import {MusicService} from "../../services/music.service";
+import _ from 'lodash';
 
 @Component({
   selector: 'page-menu',
@@ -19,6 +20,7 @@ export class MenuPage {
   private stories_list        = {};
   private stories_titles      = [];
   private users_list          = [];
+  private users_data          = {};
   private local               = new Storage();
   private delete_user_name    = '';
   private musicService;
@@ -31,6 +33,11 @@ export class MenuPage {
     this.local.get('user').then((res) => {
       if (res != null) {
         this.users_list = JSON.parse(res);
+      }
+    });
+    this.local.get('data').then((res) => {
+      if (res != null) {
+        this.users_data = JSON.parse(res);
       }
     });
 
@@ -72,6 +79,8 @@ export class MenuPage {
     let index = this.users_list.indexOf(this.delete_user_name);
     this.users_list.splice(index, 1);
     this.local.set('user', JSON.stringify(this.users_list));
+    delete this.users_data[this.delete_user_name];
+    this.local.set('data', JSON.stringify(this.users_data));
     this.delete_user_name = '';
     if (!this.users_list.length) {
       this.status = 'main';
@@ -87,8 +96,13 @@ export class MenuPage {
   }
 
 
-  selectStory(story) {
-    this.navCtrl.push(this.stories_list[story]);
+  selectStory(story, suspend_data) {
+    this.navCtrl.push(this.stories_list[story], _.extend({}, {login_name: this.login_name}, suspend_data));
+  }
+
+  loadSavedStory() {
+    var data = this.users_data[this.login_name];
+    this.navCtrl.push(this.stories_list[data.story], _.extend({}, {login_name: this.login_name}, data));
   }
 
 

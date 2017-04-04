@@ -4,7 +4,7 @@
         <div class="menu-container">
             <div *ngIf="status == 'main'">
                 <div>
-                    <h3>Welcome</h3>
+                    <h3>The Gingerbread Man Story</h3>
                 </div>
                 <div>
                     <input type="button" value="Select user" margin-top  (click)="status = 'users_list'" *ngIf="users_list.length">
@@ -21,7 +21,7 @@
                     <span>{{ new_user_error }}</span>
                 </div>
                 <div>
-                    <input type="text" placeholder="Enter your name" margin-top [attr.value]="new_user_name" #new_user_name_input (change)="new_user_name = new_user_name_input.value">
+                    <input type="text" placeholder="Enter your name" margin-top [attr.value]="new_user_name" #new_user_name_input (keyup.enter)="addNewUser()" (change)="new_user_name = new_user_name_input.value">
                 </div>
                 <div>
                     <input type="submit" value="Create" margin-top (click)="addNewUser()">
@@ -92,8 +92,8 @@
                 <div>
                     <h3>Select </h3>
                 </div>
-                <div>
-                    <input type="submit" value="Load saved story" margin-top>
+                <div *ngIf="users_data[login_name] != undefined">
+                    <input type="submit" value="Load saved story" margin-top (click)="loadSavedStory()">
                 </div>
                 <div>
                     <input type="submit" value="Select a new story" margin-top (click)="status= 'stories_list'">

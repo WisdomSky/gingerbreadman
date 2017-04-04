@@ -1,4 +1,4 @@
-<ion-slides effect="flip">
+<ion-slides effect="flip" (ionSlideDidChange)="onSlideChange($event)">
     <ion-slide>
         <ion-card class="story-card">
             <ion-icon name="ios-musical-notes-outline" class="music-setting" (click)="musicSetting()"></ion-icon>
@@ -251,7 +251,7 @@
     <ion-slide style="background: #333;">
         <div class="fade-text">
             <h1>The End</h1>
-            <a href="#" (click)="goToMenu()">Return to menu</a>
+            <input type="submit" value="Return to menu" margin-top (click)="goToMenu()">
         </div>
     </ion-slide>
 
