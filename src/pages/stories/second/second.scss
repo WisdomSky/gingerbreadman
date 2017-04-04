@@ -1,5 +1,12 @@
 story-second {
-  overflow: hidden;
-
+  background: #fff;
+  .fade-text {
+    transition: color 4s;
+    color: #333;
+    padding-top: 100px;
+  }
+  .swiper-slide-active .fade-text  {
+    color: #fff;
+  }
 
 }

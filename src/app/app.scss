@@ -71,6 +71,7 @@ h3 {
 
     &:not(:first-child):not(.quote) {
       text-indent: 20px;
+      clear: both;
     }
 
   }
