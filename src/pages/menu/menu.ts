@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import stories from './../stories/index';
-import { NavController } from 'ionic-angular';
+import { NavController, PopoverController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import {MusicService} from "../../services/music.service";
 import _ from 'lodash';
+import {MusicPage} from "../music/music";
 
 @Component({
   selector: 'page-menu',
@@ -25,7 +26,7 @@ export class MenuPage {
   private delete_user_name    = '';
   private musicService;
 
-  constructor(public navCtrl: NavController, musicService: MusicService) {
+  constructor(public navCtrl: NavController, musicService: MusicService, public popoverCtrl: PopoverController) {
     this.musicService = musicService;
     this.stories_list   = stories;
     this.stories_titles = Object.keys(this.stories_list);
@@ -105,5 +106,9 @@ export class MenuPage {
     this.navCtrl.push(this.stories_list[data.story], _.extend({}, {login_name: this.login_name}, data));
   }
 
+  musicSetting() {
+    let popover = this.popoverCtrl.create(MusicPage);
+    popover.present();
+  }
 
 }
